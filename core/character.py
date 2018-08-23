@@ -14,17 +14,39 @@ class Character:
     # def description(self):
     #     print("%s: \nvie:%s\nmana:%s\nexpérience:%s\nforce:%s\ninventaire:%s") %(self.name, self.health, self.mana, self.xp, self.power, self.inventory)
 
-    def move(self, x, y):
-        print("%s se déplace") %(self.name)
+    # def move(self, x, y):
+    #     print("%s se déplace") %(self.name)
 
-    def attack(self, opponent):
-        print("%s attaque %s") %(self.name, opponent.name)
+    def attack(self, enemy):
+        print("%s attaque %s") %(self.name, enemy.name)
+        self.xp += 1
+        # armor à prevoir
+        enemy.health = enemy.health - self.power
 
-    def throw(self, object):
-        print("%s jette %s") %(self.name, object.name)
+    def pick(self, item):
+        print("%s ramasse %s") %(self.name, item.name)
+        self.inventory.append(item)
 
-    def use(self, object):
-        print("%s utilise %s") %(self.name, object.name)
+    def drop(self, item):
+        print("%s jette %s") %(self.name, item.name)
+        self.inventory.remove(item)
+
+    def use(self, item):
+        if item in self.inventory:
+            if hasattr(item, 'gain'):
+                print("%s utilise %s") %(self.name, item.name)
+                print(self.health)
+                self.health += item.gain
+                print(self.health)
+                self.inventory.remove(item)
+            if hasattr(item, 'cost'):
+                if self.mana > item.cost:
+                    print("%s utilise %s") %(self.name, item.name)
+                    self.mana -= item.cost
+                    self.inventory.remove(item)
+        else:
+            print("le %s n'est pas disponible") %(item.name)
+            raise
 
 # class Wizard(object):
 class Wizard(Character):
@@ -35,8 +57,14 @@ class Wizard(Character):
     # def description(self):
     #     print("%s: \nvie:%s\nmana:%s\nexpérience:%s\nforce:%s\ninventaire:%s\nsort:%s") %(self.name, self.health, self.mana, self.xp, self.power, self.inventory, self.spells)
 
-    def use(self, object):
-        print("%s utilise %s") %(self.name, object.name)
+    def invoke(self, spell, enemy):
+        if spell in self.inventory:
+            print("%s envoie un sort %s à %s") %(self.name, spell.name, enemy.name)
+            self.use(spell)
+            enemy.health -= spell.damage
+        else:
+            print("le %s n'est pas disponible") %(spell.name)
+            raise
 
 # class Warrior(object):
 class Warrior(Character):
