@@ -10,12 +10,15 @@ class Character:
         self.xp = xp
         self.power = power
         self.inventory = []
+        self.x = 25
+        self.y = 25
 
     # def description(self):
     #     print("%s: \nvie:%s\nmana:%s\nexpérience:%s\nforce:%s\ninventaire:%s") %(self.name, self.health, self.mana, self.xp, self.power, self.inventory)
 
-    # def move(self, x, y):
-    #     print("%s se déplace") %(self.name)
+    def move(self, x, y):
+        print("%s se déplace vers x:%s y:%s") %(self.name, x, y)
+
 
     def attack(self, enemy):
         print("%s attaque %s") %(self.name, enemy.name)
@@ -34,10 +37,8 @@ class Character:
     def use(self, item):
         if item in self.inventory:
             self.inventory.remove(item)
-            print("%s utilise %s") %(self.name, item.name)
             item.use(self)
         else:
-            print("le %s n'est pas disponible") %(item.name)
             raise
 
 # class Wizard(object):
@@ -51,11 +52,9 @@ class Wizard(Character):
 
     def invoke(self, spell, enemy):
         if spell in self.inventory:
-            print("%s envoie un sort %s à %s") %(self.name, spell.name, enemy.name)
             self.use(spell)
             enemy.health -= spell.damage
         else:
-            print("le %s n'est pas disponible") %(spell.name)
             raise
 
 # class Warrior(object):
