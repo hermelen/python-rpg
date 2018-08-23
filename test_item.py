@@ -18,7 +18,11 @@ class TestItems(unittest.TestCase):
         self.assertEqual(i.cost, 10)
         self.assertEqual(i.damage, 30)
     
+<<<<<<< HEAD
     def testSpellConstructor(self):
+=======
+    def testAppleConstructor(self):
+>>>>>>> b08d7618298d7753cfa04b8dead415c2e8047012
         i = Apple(1, 30)
         self.assertEqual(i.name, "Apple")
         self.assertEqual(i.weight, 1)

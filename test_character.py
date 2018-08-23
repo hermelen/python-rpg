@@ -14,7 +14,11 @@ class TestCharacter(unittest.TestCase):
         self.assertEqual(c.power, 30)
         self.assertEqual(c.xp, 40)
         self.assertEqual(c.inventory, [])
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> b08d7618298d7753cfa04b8dead415c2e8047012
     def testWizardConstructor(self):
         w = Wizard("Plop")
         self.assertEqual(w.name, "Plop")
