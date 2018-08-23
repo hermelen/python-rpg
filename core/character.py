@@ -33,17 +33,9 @@ class Character:
 
     def use(self, item):
         if item in self.inventory:
-            if hasattr(item, 'gain'):
-                print("%s utilise %s") %(self.name, item.name)
-                print(self.health)
-                self.health += item.gain
-                print(self.health)
-                self.inventory.remove(item)
-            if hasattr(item, 'cost'):
-                if self.mana > item.cost:
-                    print("%s utilise %s") %(self.name, item.name)
-                    self.mana -= item.cost
-                    self.inventory.remove(item)
+            self.inventory.remove(item)
+            print("%s utilise %s") %(self.name, item.name)
+            item.use(self)
         else:
             print("le %s n'est pas disponible") %(item.name)
             raise
