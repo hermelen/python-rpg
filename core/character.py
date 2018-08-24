@@ -7,17 +7,24 @@ class Character:
         self.name = name
         self.health = health
         self.mana = mana
-        self.xp = xp
         self.power = power
+        self.xp = xp
         self.inventory = []
-        self.x = 25
-        self.y = 25
+        self.x = None
+        self.y = None
 
     # def description(self):
     #     print("%s: \nvie:%s\nmana:%s\nexpérience:%s\nforce:%s\ninventaire:%s") %(self.name, self.health, self.mana, self.xp, self.power, self.inventory)
 
     def move(self, x, y):
-        print("%s se déplace vers x:%s y:%s") %(self.name, x, y)
+        self.x = x
+        self.y = y
+        print("%s se déplace vers colonne %s ligne %s") %(self.name, self.y, self.x)
+
+    # def display(self, x, y):
+    #     self.x = x
+    #     self.y = y
+
 
 
     def attack(self, enemy):
