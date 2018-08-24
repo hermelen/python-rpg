@@ -8,11 +8,9 @@ class Board:
         self.width = width
         self.height = height
         for lig in range(height):
-            lig = []
-            self.grid.append(lig)
+            self.grid.append([])
             for col in range(width):
-                col = []
-                lig.append(col)
+                self.grid[lig].append([])
 
     def move(self, character, x, y):
         if character.x is not None and character.y is not None:
@@ -25,9 +23,9 @@ class Board:
 
     def display(self) :
         map = ""
-        for line in range(len(self.grid)):
+        for line in self.grid:
             row = ""
-            for cell in self.grid[line]:
+            for cell in line:
                 if not cell:
                     row += "- "
                 else:
